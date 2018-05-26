@@ -1,91 +1,130 @@
 from PIL import Image, ImageDraw, ImageFont
+import textwrap
 
 # Define Strings
 # cardTypes = ['Order', 'Stratagem']
 
 contentOrders = [
-    {"title": "Bring it Down!", "rules": "Re-roll wound rolls of 1 for all the models in the ordered unit until the end of the phase."},
-    {"title": "Fix Bayonets!", "rules": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."}]
+    {"title": "Bring it Down!",
+     "rules": "Re-roll wound rolls of 1 for all the models in the ordered unit until the end of the phase."},
+    {"title": "Fix Bayonets!",
+     "rules": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."}]
 orders = {"name": "Order", "content": contentOrders}
 
-
 contentStratagem = [{"title": "Preliminary Bombardment", "rules": "Do a shoot"},
-                   {"title": "Defensive Gunners", "rules": "Do a defensive shoot"}]
+                    {"title": "Defensive Gunners", "rules": "Do a defensive shoot"}]
 stratagem = {"name": "Stratagem", "content": contentStratagem}
 
-cards = [orders, stratagem]
+contentPsychic = [
+    {"title": "Wizard Hat",
+     "rules": "I put on my robe and wizard hat"}
+]
+psychic = {"name": "Psychic Power", "content": contentPsychic}
+
+cards = [orders, stratagem, psychic]
 
 # Define other constants
-backgroundFilePath = "KriegGrenadierBackground.jpg"
+# backgroundFilePath = "KriegGrenadierBackground.jpg"
+backgroundFilePath = "KriegPlatoonBackground.jpg"
 background = Image.open(backgroundFilePath).convert('RGBA')
 
 fontFile = "40kFont.TTF"
-fontCardType = ImageFont.truetype(fontFile, 70)
+fontCardType = ImageFont.truetype(fontFile, 60)
 fontRules = ImageFont.truetype(fontFile, 50)
+fontTitle = ImageFont.truetype(fontFile, 100)
+fontsDict = {"cardType": fontCardType,
+             "rules": fontRules,
+             "title": fontTitle}
 
-cardTypeTextYPos = 50
-rulesTextYPos = 200
+y_card_pos = 50
+y_rules_pos = 400
+y_title_pos = 130
+margins = 40
 
 # Colors
 black = (0, 0, 0)
+grey = (50, 50, 50)
 transparent = (255, 255, 255, 0)
+
+# Values
+background_transparency = 160
 
 
 def get_total_card_count():
-    #TODO group card types
-    #TODO use cardTypes text + dynamicaly gen name for dicts
+    # TODO group card types
+    # TODO use cardTypes text + dynamicaly gen name for dicts
     return len(contentOrders) + len(contentStratagem)
 
 
-def get_card_type_x_pos(string):
-    width = fontCardType.getsize(string)[0]
+def get_text_x_pos(string="", text_type=None):
+    if text_type is None:
+        raise Exception("Need a cardType")
+
+    width = fontsDict[text_type].getsize(string)[0]
     return get_text_midpoint_width(width)
 
 
 def get_text_midpoint_width(text_width):
     return background.size[0] / 2 - text_width / 2
 
-def get_text_wrap_num_lines(string):
-    return 2
-
 
 def main():
-
     # For each card to make
-    for i in range(0,len(cards)):
+    for i in range(0, len(cards)):
         cardType = cards[i]
-        print("Card type name : " + cardType["name"])
+        print("\n\nCard type name : " + cardType["name"])
 
         # For each card of that type
 
         # Make blank image for text, sets color of background inc transparance
-        image = Image.new('RGBA', background.size, (225, 225, 225, 200))
-        imageDrawObject = ImageDraw.Draw(image)
+        image_card_type_text = Image.new('RGBA', background.size, (255, 255, 255, background_transparency))
+        imageDrawObject_card_type_text = ImageDraw.Draw(image_card_type_text)
         # Draw title
-        string = cardType["name"]
-        imageDrawObject.text((get_card_type_x_pos(string), cardTypeTextYPos), string, font=fontCardType, fill=black)
+        type_string = cardType["name"]
+        x_pos = get_text_x_pos(string=type_string, text_type="cardType")
+        imageDrawObject_card_type_text.text((x_pos, y_card_pos), type_string, font=fontCardType, fill=grey)
         # Add card type text to final
-        final = Image.alpha_composite(background, image)
+        card_with_type_text = Image.alpha_composite(background, image_card_type_text)
 
-
-        for j in range (0, len(cardType["content"])):
+        # For each card of that type
+        for j in range(0, len(cardType["content"])):
+            current_card = card_with_type_text
             content = cardType["content"][j]
             print("Card content title: " + content["title"])
 
+            # Add Title
+            string_title = content["title"]
+            lines = textwrap.wrap(string_title, width=18)
+            print(lines)
+            y_text = y_title_pos
+            for line in lines:
+                height = fontsDict["title"].getsize(line)[1]
+                x_text = get_text_x_pos(line, "title")
+                image_title_text = Image.new('RGBA', background.size, (255, 255, 255, 0))
+                imageDrawObject_title_text = ImageDraw.Draw(image_title_text)
+                imageDrawObject_title_text.text((x_text, y_text), line, font=fontTitle, fill=black)
+                current_card = Image.alpha_composite(current_card, image_title_text)
+                y_text += height
+
+            current_card = Image.alpha_composite(current_card, image_title_text)
+
+            # Print rules on card
             string_rules = content["rules"]
-
-            # TODO workout text wrapping, and do FOR each line
-            for k in range (0, get_text_wrap_num_lines(string_rules)):
-                print (k)
-
-            imageDrawObject.text((get_card_type_x_pos(string_rules), rulesTextYPos), string_rules, font=fontRules, fill=black)
-            final = Image.alpha_composite(final, image)
-
-
+            lines = textwrap.wrap(string_rules, width=40)
+            y_text = y_rules_pos
+            for line in lines:
+                print("Line: " + line)
+                height = fontsDict["rules"].getsize(line)[1]
+                x_text = get_text_x_pos(line, "rules")
+                image_rules_text_line = Image.new('RGBA', background.size, (255, 255, 255, 0))
+                imageDrawObject_rules_text = ImageDraw.Draw(image_rules_text_line)
+                imageDrawObject_rules_text.text((x_text, y_text), line, font=fontsDict["rules"], fill=black)
+                current_card = Image.alpha_composite(current_card, image_rules_text_line)
+                y_text += height
 
             # Finaly, save file
-            final.save(fp="output/" + cardType["name"] + content["title"].replace(' ','') + '.png')
-
+            # final = Image.alpha_composite(card_with_type_text, image_rules_text_line)
+            current_card.save(fp="output/" + cardType["name"] + content["title"].replace(' ', '') + '.png')
 
         # title = Image.new('RGBA', background.size, black)
 
