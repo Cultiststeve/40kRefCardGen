@@ -48,6 +48,8 @@ transparent = (255, 255, 255, 0)
 
 # Values
 background_transparency = 160
+borderSizeVertical = 30  # Larger = smaller proportion is border
+borderSizeHorizontal = 35
 
 
 def get_total_card_count():
@@ -69,12 +71,12 @@ def get_text_midpoint_width(text_width):
 
 
 def main():
-    # For each card to make
+    # For each card type to make
     for i in range(0, len(cards)):
         cardType = cards[i]
         print("\n\nCard type name : " + cardType["name"])
 
-        # For each card of that type
+
 
         # Make blank image for text, sets color of background inc transparance
         image_card_type_text = Image.new('RGBA', background.size, (255, 255, 255, background_transparency))
@@ -84,11 +86,21 @@ def main():
         x_pos = get_text_x_pos(string=type_string, text_type="cardType")
         imageDrawObject_card_type_text.text((x_pos, y_card_pos), type_string, font=fontCardType, fill=grey)
         # Add card type text to final
-        card_with_type_text = Image.alpha_composite(background, image_card_type_text)
+        card_outline = Image.alpha_composite(background, image_card_type_text)
+
+        #Draw borders
+        image_borders = Image.new('RGBA', background.size, (255, 255, 255, 0))
+        imageDrawObject_borders = ImageDraw.Draw(image_borders)
+        imageDrawObject_borders.rectangle(((0, 0), (background.size[0]/borderSizeVertical, background.size[1])), fill=black)
+        imageDrawObject_borders.rectangle(((background.size[0]*((borderSizeVertical-1)/borderSizeVertical), 0), background.size), fill=black)
+        imageDrawObject_borders.rectangle(((0,0),(background.size[0],background.size[1]/borderSizeHorizontal)), fill=black)
+        imageDrawObject_borders.rectangle(((0, background.size[1]*(borderSizeHorizontal-1)/borderSizeHorizontal),(background.size[0],background.size[1])), fill=black)
+        card_outline = Image.alpha_composite(card_outline, image_borders)
+
 
         # For each card of that type
         for j in range(0, len(cardType["content"])):
-            current_card = card_with_type_text
+            current_card = card_outline
             content = cardType["content"][j]
             print("Card content title: " + content["title"])
 
