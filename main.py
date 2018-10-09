@@ -20,10 +20,10 @@ contentOrders = [
      "rules": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."}
 ]
 orders = {"name": "Order", "content": contentOrders}
-    #
-    # {"title": "",
-    #  "rules": "",
-    #  "cost": ""},
+#
+# {"title": "",
+#  "rules": "",
+#  "cost": ""},
 
 contentStratagem = [
     {"title": "Crush them!",
@@ -102,12 +102,12 @@ y_title_pos = 130
 margins = 40
 
 x_cost = 820
-y_cost = y_card_pos-10
+y_cost = y_card_pos - 10
 
 # Colors
 black = (0, 0, 0)
 grey = (50, 50, 50)
-darkRed = (255, 50 , 50)
+darkRed = (255, 50, 50)
 transparent = (255, 255, 255, 0)
 
 # Values
@@ -140,27 +140,36 @@ def main():
         cardType = cards[i]
         print("\n\nCard type name : " + cardType["name"])
 
-
-
         # Make blank image for text, sets color of background inc transparance
         image_card_type_text = Image.new('RGBA', background.size, (255, 255, 255, background_transparency))
         imageDrawObject_card_type_text = ImageDraw.Draw(image_card_type_text)
         # Draw title
         type_string = cardType["name"]
         x_pos = get_text_x_pos(string=type_string, text_type="cardType")
-        imageDrawObject_card_type_text.text((x_pos, y_card_pos), type_string, font=fontCardType, fill="darkblue")
+        if "Psychic" in type_string:
+            fill = "darkBlue"
+        elif "Order" in type_string:
+            fill = "darkorange"
+        elif "Stratagem" in type_string:
+            fill = "purple"
+        else:
+            fill = "black"
+        imageDrawObject_card_type_text.text((x_pos, y_card_pos), type_string, font=fontCardType, fill=fill)
         # Add card type text to final
         card_outline = Image.alpha_composite(background, image_card_type_text)
 
-        #Draw borders
+        # Draw borders
         image_borders = Image.new('RGBA', background.size, (255, 255, 255, 0))
         imageDrawObject_borders = ImageDraw.Draw(image_borders)
-        imageDrawObject_borders.rectangle(((0, 0), (background.size[0]/borderSizeVertical, background.size[1])), fill="black")
-        imageDrawObject_borders.rectangle(((background.size[0]*((borderSizeVertical-1)/borderSizeVertical), 0), background.size), fill="black")
-        imageDrawObject_borders.rectangle(((0,0),(background.size[0],background.size[1]/borderSizeHorizontal)), fill="black")
-        imageDrawObject_borders.rectangle(((0, background.size[1]*(borderSizeHorizontal-1)/borderSizeHorizontal),(background.size[0],background.size[1])), fill="black")
+        imageDrawObject_borders.rectangle(((0, 0), (background.size[0] / borderSizeVertical, background.size[1])),
+                                          fill="black")
+        imageDrawObject_borders.rectangle(
+            ((background.size[0] * ((borderSizeVertical - 1) / borderSizeVertical), 0), background.size), fill="black")
+        imageDrawObject_borders.rectangle(((0, 0), (background.size[0], background.size[1] / borderSizeHorizontal)),
+                                          fill="black")
+        imageDrawObject_borders.rectangle(((0, background.size[1] * (borderSizeHorizontal - 1) / borderSizeHorizontal),
+                                           (background.size[0], background.size[1])), fill="black")
         card_outline = Image.alpha_composite(card_outline, image_borders)
-
 
         # For each card of that type
         for j in range(0, len(cardType["content"])):
@@ -179,6 +188,7 @@ def main():
                 x_text = get_text_x_pos(line, "title")
                 image_title_text = Image.new('RGBA', background.size, (255, 255, 255, 0))
                 imageDrawObject_title_text = ImageDraw.Draw(image_title_text)
+
                 imageDrawObject_title_text.text((x_text, y_text), line, font=fontTitle, fill="black")
                 current_card = Image.alpha_composite(current_card, image_title_text)
                 y_text += height
