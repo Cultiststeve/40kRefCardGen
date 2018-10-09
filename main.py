@@ -27,10 +27,10 @@ orders = {"name": "Order", "content": contentOrders}
 
 contentStratagem = [
     {"title": "Crush them!",
-     "rules": "Start of the Charge Phase:\t Select an AM Vehicle unit from your army. This unit can charge even if it Advanced this turn. In the following Fight phase, attacks made by this unit hit on a 2+.",
+     "rules": "Start of your Charge phase: Select an AM Vehicle unit from your army. This unit can charge even if it Advanced this turn. In the following Fight phase, attacks made by this unit hit on a 2+.",
      "cost": "1 CP"},
     {"title": "Jury Rigging",
-     "rules": "Start of your turn:\t\t Select an AM Vehicle from your army. It cannot move, charge or pile in this turn, but immediately heals 1 wound",
+     "rules": "Start of your turn:\t\t Select an AM Vehicle from your army. It cannot move, charge or pile in this turn, but immediately heals 1 wound. You can only use this Stratagem once per turn",
      "cost": "1 CP"},
     {"title": "Preliminary Bombardment",
      "rules": "Before first battle round:\t Roll a dice for each enemy unit on the battlefield. On a 6, that unit suffers 1 mortal wound. You can only use this Stratagem once per battle.",
@@ -42,7 +42,7 @@ contentStratagem = [
      "rules": "When charge against AM Vehicle:\t When that unit fires Overwatch this phase, they successfully hit on a roll of 5 or 6, instead of only 6.",
      "cost": "1 CP"},
     {"title": "Take Cover!",
-     "rules": "In opponent's Shooting phase, when unit targeted:\t\t\t You can add 1 to the saving throws you make for this unit until the end of the phase.",
+     "rules": "In opponent's Shooting phase, when Infantry unit targeted:\t\t\t You can add 1 to the armour saving throws you make for this unit until the end of the phase.",
      "cost": "1 CP"},
     {"title": "Grenadiers",
      "rules": "Before an AM infantry unit shoots or fires Overwatch:\t\t\t Up to ten models in the unit that are armed with grenades can throw a grenade this phase, instead of onlly one model being able to do so.",
@@ -61,6 +61,9 @@ contentStratagem = [
      "cost": "2 CP"},
     {"title": "Insane Bravery",
      "rules": "Before taking a Moral test:\t You can automatically pass a single Moral test.",
+     "cost": "2 CP"},
+    {"title": "Arial Spotter",
+     "rules": "At the start of the shooting phase:\t\t\t Select a Basilisk or Wyvren model, they can re-roll failed hit rolls for this unit in this phase.",
      "cost": "2 CP"},
 ]
 stratagem = {"name": "Stratagem", "content": contentStratagem}
