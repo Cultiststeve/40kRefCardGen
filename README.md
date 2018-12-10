@@ -1,4 +1,7 @@
-40kCardGeneration
+# 40kCardGeneration
+A python script to generate 40k reminder cards for strats, psychic powers, orders ect.
 
-Requires PIL
-All variables to customise should be at top of page. Just run, and output folder is filled with cards.
+# Running
+*Requires PIL*
+
+
