@@ -5,4 +5,10 @@ venv1/
 
 \.idea/
 
-*output/*
+*_output/*
+
+*.pyc
+
+output.zip
+
+*_output.zip
