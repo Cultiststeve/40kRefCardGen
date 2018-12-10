@@ -75,14 +75,20 @@ def get_background_image(file_path):
 
 
 def main():
-    # TODO get paths from args
-    data_file_path = "input_data/death_korp.json"
-    background_file_path = "input_data/death_korp_background.jpg"
+    # Take input for data
+    parser = argparse.ArgumentParser(description="Creates 40k reminder cards")
+    parser.add_argument('input_data', type=str, help="input json file")
+    parser.add_argument('background_image', type=str, help="background image")
+    args = parser.parse_args()
+    print(args)
+
+    data_file_path = args.input_data
+    background_file_path = args.background_image
 
     image_background = get_background_image(background_file_path)
     json_data = get_data(data_file_path)
-    faction=json_data["faction"]
-    output_dir = faction.replace(' ','') + "_output/"
+    faction = json_data["faction"]
+    output_dir = faction.replace(' ', '') + "_output/"
     try:
         os.makedirs(output_dir)
     except FileExistsError:
@@ -117,13 +123,16 @@ def main():
         # Draw borders
         image_borders = Image.new('RGBA', image_background.size, (255, 255, 255, 0))
         image_draw_object_borders = ImageDraw.Draw(image_borders)
-        image_draw_object_borders.rectangle(((0, 0), (image_background.size[0] / BORDER_SIZE_VERTICAL, image_background.size[1])),
-                                          fill="black")
         image_draw_object_borders.rectangle(
-            ((image_background.size[0] * ((BORDER_SIZE_VERTICAL - 1) / BORDER_SIZE_VERTICAL), 0), image_background.size),
+            ((0, 0), (image_background.size[0] / BORDER_SIZE_VERTICAL, image_background.size[1])),
             fill="black")
-        image_draw_object_borders.rectangle(((0, 0), (image_background.size[0], image_background.size[1] / BORDER_SIZE_HORIZONTAL)),
-                                          fill="black")
+        image_draw_object_borders.rectangle(
+            (
+            (image_background.size[0] * ((BORDER_SIZE_VERTICAL - 1) / BORDER_SIZE_VERTICAL), 0), image_background.size),
+            fill="black")
+        image_draw_object_borders.rectangle(
+            ((0, 0), (image_background.size[0], image_background.size[1] / BORDER_SIZE_HORIZONTAL)),
+            fill="black")
         image_draw_object_borders.rectangle(
             ((0, image_background.size[1] * (BORDER_SIZE_HORIZONTAL - 1) / BORDER_SIZE_HORIZONTAL),
              (image_background.size[0], image_background.size[1])), fill="black")
@@ -187,6 +196,7 @@ def main():
 
             # Finally, save file
             current_card_outline.save(fp=output_dir + card_type + card_title.replace(' ', '') + '.png')
+
 
 if __name__ == '__main__':
     main()
