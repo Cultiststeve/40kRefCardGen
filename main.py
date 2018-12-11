@@ -31,7 +31,7 @@ TITLE_COLORS = {
     "Strategem": "purple",
     "Psychic": "darkBlue",
     "Order": "darkorange",
-    "Act of Faith": "red"
+    "Act of Faith": "gold"
 }
 
 # Values

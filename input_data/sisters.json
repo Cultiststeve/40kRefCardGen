@@ -1,4 +1,16 @@
 {
   "faction": "Sisters of Battle",
-  "Strategems"
+  "Strategem": {
+
+  },
+  "Psychic": {
+  },
+  "Act of Faith": {
+    "Hand of the Emperor": ["Start of the movement phase, add 3\"", "4 DV"],
+    "Spirit of the Martyr": ["Start of movement phase, 1 model regains D3 wounds or one returns from dead", "3 DV"],
+    "Aegis of the Emperor": ["Start of the opponents psychic phase, ignore mortal wounds on 4+", "3 DV"],
+    "Divine Guidance": ["Start of the shooting phase, +1 to hit rolls", "4 DV"],
+    "The Passion": ["Start of the fight phase, fight twice", "5 DV"],
+    "Light of the Emperor": ["Start of the moral phase, unit auto-passes", "3 DV"]
+  }
 }
