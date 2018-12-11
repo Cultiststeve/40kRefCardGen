@@ -1,6 +1,6 @@
 {
   "faction": "death_korp",
-  "orders": {
+  "Order": {
       "Duty unto death!": "Any Infantry or Cavalry model in the unit that is killed in the Fight phase immediately makes a single attack.",
       "Without Mercy": "All lasguns and all hot-shot lasguns in the ordered unit change their Type to Pistol 2 until the end of the turn.",
       "Bring it Down!": "Re-roll wound rolls of 1 for all the models in the ordered unit until the end of the phase.",
@@ -9,22 +9,23 @@
        "Move! Move! Move!": "Instead of shooting this phase, the ordered unit immediately moves as if it were the Movement phase. It must Advance as part of this move, and cannot declare a charge during this turn.",
       "Fix Bayonets!": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."
   },
-  "strategems":{
+  "Strategem":{
     "Crush them!": ["Start of your Charge phase: Select an AM Vehicle unit from your army. This unit can charge even if it Advanced this turn. In the following Fight phase, attacks made by this unit hit on a 2+.", "1 CP"],
-    "Jury Rigging": ["Start of your turn:\t\t Select an AM Vehicle from your army. It cannot move, charge or pile in this turn, but immediately heals 1 wound. You can only use this Stratagem once per turn", "1 CP"],
+    "Jury Rigging": ["Start of your turn:\t\t Select an AM Vehicle from your army. It cannot move, charge or pile in this turn, but immediately heals 1 wound. Use once per turn", "1 CP"],
     "Preliminary Bombardment": ["Before first battle round:\t Roll a dice for each enemy unit on the battlefield. On a 6, that unit suffers 1 mortal wound. You can only use this Stratagem once per battle.", "2 CP"],
     "Inspired Tactics": ["After an Officer issued an order:\t\t\t That officer may immediately issue an additional order.", "1 CP"],
     "Defensive Gunners": ["When charge against AM Vehicle:\t When that unit fires Overwatch this phase, they successfully hit on a roll of 5 or 6, instead of only 6.", "1 CP"],
-    "Take Cover!": ["In opponent's Shooting phase, when Infantry unit targeted:\t\t\t You can add 1 to the armour saving throws you make for this unit until the end of the phase.", "1 CP"],
-    "Grenadiers": ["Before an AM infantry unit shoots or fires Overwatch:\t\t\t Up to ten models in the unit that are armed with grenades can throw a grenade this phase, instead of onlly one model being able to do so.", "1 CP"],
+    "Take Cover!": ["In opponent's Shooting phase, when AM Infantry unit targeted:\t\t\t You can add 1 to the armour saving throws you make for this unit until the end of the phase.", "1 CP"],
+    "Grenadiers": ["Before an AM infantry unit shoots or fires Overwatch:\t\t\t Up to ten models in the unit that are armed with grenades can throw a grenade this phase, instead of only one model being able to do so.", "1 CP"],
     "Fight to the Death": ["Start of the moral phase: Pick an AM Infantry unit from your army that is required to take a Moral test. You can roll a D3 for the unit, rather than a D6, when taking this test.", "1 CP"],
-    "Vengeance for Cadia!": ["When an AM unit shoots of fires Overwatch:\t\t\t Re-roll failed hit and wound rolls for models in this unit that target CHAOS units untill the end of the phase.", "1 CP"],
+    "Vengeance for Cadia!": ["When an AM unit shoots of fires Overwatch:\t\t\t Re-roll failed hit and wound rolls for models in this unit that target CHAOS units until the end of the phase.", "1 CP"],
     "Command Re-Roll": ["You can re-roll any single dice.", "1 CP"],
     "Counter-Offensive": ["After an enemy unit that charged has fought:\t\t\t Select one of your own eligible units and fight with it next.", "2 CP"],
     "Insane Bravery": ["Before taking a Moral test:\t You can automatically pass a single Moral test.", "2 CP"],
-    "Arial Spotter": ["At the start of the shooting phase:\t\t\t Select a Basilisk or Wyvren model, they can re-roll failed hit rolls for this unit in this phase.", "2 CP"]
+    "Arial Spotter": ["At the start of the shooting phase:\t\t\t Select a Basilisk or Wyvern model, they can re-roll failed hit rolls for this unit in this phase.", "2 CP"],
+    "Prepared Positions": ["Start of first battle round:\tAll your units within your deployment zone other than titanic receive the benefit of cover.", "2 CP"]
   },
-  "psychics": {
+  "Psychic": {
       "Smite": ["The closest visible enemy unit within 18\" of the psyker suffers D3 mortal wounds. If the result of the Psychic test was more than 10, the target suffers D6 mortal wounds instead.", "5 WC"],
       "Psychic Barrier": ["Select a friendly AM unit within 12\" of the psyker. Until the start of your next Psychic phase, add 1 to that unit's saving throws.", "6 WC"],
       "Nightshroud": ["Choose a friendly AM unit within 12\" of the psyker. Until the start of your next turn, any enemy unit that targets the chosen unit with a ranged weapon suffers a -1 penalty to its hit rolls.", "6 WC"]

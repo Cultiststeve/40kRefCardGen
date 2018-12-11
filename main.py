@@ -26,10 +26,13 @@ X_COST = 820
 Y_COST = Y_CARD_POS - 10
 
 # Colors
-BLACK = (0, 0, 0)
-GREY = (50, 50, 50)
-DARK_RED = (255, 50, 50)
-TRANSPARENT = (255, 255, 255, 0)
+COLOR_TRANSPARENT = (255, 255, 255, 0)
+TITLE_COLORS = {
+    "Strategem": "purple",
+    "Psychic": "darkBlue",
+    "Order": "darkorange",
+    "Act of Faith": "red"
+}
 
 # Values
 BACKGROUND_TRANSPARENCY = 160
@@ -74,6 +77,14 @@ def get_background_image(file_path):
     return background
 
 
+def draw_text_border(draw_obj, x, y, text, font, fill, border_fill, thickness):
+    draw_obj.text((x - thickness, y - thickness), text, font=font, fill=border_fill)
+    draw_obj.text((x + thickness, y - thickness), text, font=font, fill=border_fill)
+    draw_obj.text((x - thickness, y + thickness), text, font=font, fill=border_fill)
+    draw_obj.text((x + thickness, y + thickness), text, font=font, fill=border_fill)
+    draw_obj.text((x, y), text, font=font, fill=fill)
+
+
 def main():
     # Take input for data
     parser = argparse.ArgumentParser(description="Creates 40k reminder cards")
@@ -103,25 +114,17 @@ def main():
         image_card_type_text = Image.new('RGBA', image_background.size, (255, 255, 255, BACKGROUND_TRANSPARENCY))
         image_draw_obj_card_type_text = ImageDraw.Draw(image_card_type_text)
 
-        # Draw title
-        type_string = card_type
-        x_pos = get_text_x_pos(background_img=image_background, text_type="cardType", string=type_string)
-        # TODO dont code as hard
-        if "Psychic" in type_string:
-            fill = "darkBlue"
-        elif "Order" in type_string:
-            fill = "darkorange"
-        elif "Stratagem" in type_string:
-            fill = "purple"
-        else:
-            fill = "black"
+        # Draw card type text
+        x_pos = get_text_x_pos(background_img=image_background, text_type="cardType", string=card_type)
+        fill = TITLE_COLORS[card_type]
 
-        image_draw_obj_card_type_text.text((x_pos, Y_CARD_POS), type_string, font=FONT_CARD_TYPE, fill=fill)
+
+        image_draw_obj_card_type_text.text((x_pos, Y_CARD_POS), card_type, font=FONT_CARD_TYPE, fill=fill)
         # Add card type text to final
         card_outline = Image.alpha_composite(image_background, image_card_type_text)
 
         # Draw borders
-        image_borders = Image.new('RGBA', image_background.size, (255, 255, 255, 0))
+        image_borders = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
         image_draw_object_borders = ImageDraw.Draw(image_borders)
         image_draw_object_borders.rectangle(
             ((0, 0), (image_background.size[0] / BORDER_SIZE_VERTICAL, image_background.size[1])),
@@ -155,18 +158,20 @@ def main():
                 card_cost = None
             print("Card content: {}".format(card_content))
 
-            # Add Title
-            string_title = card_title
-            lines = textwrap.wrap(string_title, width=18)
+            # Add name of card
+            lines = textwrap.wrap(card_title, width=18)
             y_text = Y_TITLE_POS
             num_title_lines = len(lines)
+            assert num_title_lines > 0
             for line in lines:
                 height = FONTS_DICT["title"].getsize(line)[1]
                 x_text = get_text_x_pos(background_img=image_background, text_type="title", string=line)
-                image_title_text = Image.new('RGBA', image_background.size, (255, 255, 255, 0))
+                image_title_text = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
                 imageDrawObject_title_text = ImageDraw.Draw(image_title_text)
 
-                imageDrawObject_title_text.text((x_text, y_text), line, font=FONT_TITLE, fill="black")
+                draw_text_border(draw_obj=imageDrawObject_title_text, x=x_text, y=y_text, font=FONT_TITLE,
+                                 thickness=3, text=line, border_fill="black", fill="white")
+                # imageDrawObject_title_text.text((x_text, y_text), line, font=FONT_TITLE, fill="black")
                 current_card_outline = Image.alpha_composite(current_card_outline, image_title_text)
                 y_text += height
 
@@ -181,7 +186,7 @@ def main():
                 print("Line: " + line)
                 height = FONTS_DICT["rules"].getsize(line)[1]
                 x_text = get_text_x_pos(background_img=image_background, text_type="rules", string=line)
-                image_rules_text_line = Image.new('RGBA', image_background.size, (255, 255, 255, 0))
+                image_rules_text_line = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
                 imageDrawObject_rules_text = ImageDraw.Draw(image_rules_text_line)
                 imageDrawObject_rules_text.text((x_text, y_text), line, font=FONTS_DICT["rules"], fill="black")
                 current_card_outline = Image.alpha_composite(current_card_outline, image_rules_text_line)
@@ -189,7 +194,7 @@ def main():
 
             # Print cost
             if card_cost:
-                image_cost = Image.new('RGBA', image_background.size, (255, 255, 255, 0))
+                image_cost = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
                 image_draw_object_cost = ImageDraw.Draw(image_cost)
                 image_draw_object_cost.text((X_COST, Y_COST), card_cost, font=FONTS_DICT["cost"], fill="darkRed")
                 current_card_outline = Image.alpha_composite(current_card_outline, image_cost)
