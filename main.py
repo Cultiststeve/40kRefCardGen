@@ -28,7 +28,7 @@ Y_COST = Y_CARD_POS - 10
 # Colors
 COLOR_TRANSPARENT = (255, 255, 255, 0)
 TITLE_COLORS = {
-    "Strategem": "purple",
+    "Stratagem": "purple",
     "Psychic": "darkBlue",
     "Order": "darkorange",
     "Act of Faith": "gold"
@@ -178,19 +178,37 @@ def main():
             current_card_outline = Image.alpha_composite(current_card_outline, image_title_text)
 
             # Print rules on card
-            lines = textwrap.wrap(card_content, width=MAX_WIDTH_RULES)
+            colon_position = card_content.find(':')
+            print("colon_position: {}".format(colon_position))
+            if colon_position is not -1:
+                pre_colon_lines = textwrap.wrap(card_content[:colon_position+1], width=MAX_WIDTH_RULES)
+                print("Precolon: {}".format(pre_colon_lines))
+                post_colon_lines = textwrap.wrap(card_content[colon_position+2:], width=MAX_WIDTH_RULES)
+            else:
+                pre_colon_lines = textwrap.wrap(card_content, width=MAX_WIDTH_RULES)
+                post_colon_lines = None
             y_text = Y_RULES_POS
             if num_title_lines > 1:
                 y_text += FONTS_DICT["title"].getsize("example")[1]
-            for line in lines:
-                print("Line: " + line)
-                height = FONTS_DICT["rules"].getsize(line)[1]
+            for line in pre_colon_lines:
+                print("Line: {}".format(line))
                 x_text = get_text_x_pos(background_img=image_background, text_type="rules", string=line)
                 image_rules_text_line = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
                 imageDrawObject_rules_text = ImageDraw.Draw(image_rules_text_line)
                 imageDrawObject_rules_text.text((x_text, y_text), line, font=FONTS_DICT["rules"], fill="black")
                 current_card_outline = Image.alpha_composite(current_card_outline, image_rules_text_line)
+                height = FONTS_DICT["rules"].getsize(line)[1]
                 y_text += height
+            if post_colon_lines:
+                for line in post_colon_lines:
+                    print("Line: {}".format(line))
+                    x_text = get_text_x_pos(background_img=image_background, text_type="rules", string=line)
+                    image_rules_text_line = Image.new('RGBA', image_background.size, COLOR_TRANSPARENT)
+                    imageDrawObject_rules_text = ImageDraw.Draw(image_rules_text_line)
+                    imageDrawObject_rules_text.text((x_text, y_text), line, font=FONTS_DICT["rules"], fill="black")
+                    current_card_outline = Image.alpha_composite(current_card_outline, image_rules_text_line)
+                    height = FONTS_DICT["rules"].getsize(line)[1]
+                    y_text += height
 
             # Print cost
             if card_cost:
