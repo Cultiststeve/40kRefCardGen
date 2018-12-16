@@ -9,7 +9,8 @@
     "Holy Trinity": ["Before shooting with an Adepta Sororitas unit (in shooting phase), if hit by 1 bolt, 1 melta and 1 flamer weapon: add 1 to all wound rolls.", "1 CP"],
     "Sacred Rites": ["Start of movement phase: gain 1 Faith Point", "1 CP"],
     "Vessel of the Emperor's Will": ["After a successful Test of Faith roll for a Adepta Sororitas Character: Act of Faith affects all friendly Adepta Sororitas units within 6\".", "1 CP"],
-    "Suffer not the Witch": ["Start of shooting or fight phase: Choose an Adepta Sororitas unit, re-rolls wounds for attacks targeting Psyker units.", "1 CP"]
+    "Suffer not the Witch": ["Start of shooting or fight phase: Choose an Adepta Sororitas unit, re-rolls wounds for attacks targeting Psyker units.", "1 CP"],
+    "Extremis Trigger Word": ["When an Arco-Flagelllant unit fights: Each flail makes 3 hit rolls for each attack. After fight, each model dies on a D6.", "2 CP"]
   },
   "Act of Faith": {
     "Hand of the Emperor": ["Start of the movement phase, add 3\" to selected unit's move.", "4 DV"],

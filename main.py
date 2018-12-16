@@ -116,8 +116,12 @@ def main():
 
         # Draw card type text
         x_pos = get_text_x_pos(background_img=image_background, text_type="cardType", string=card_type)
-        fill = TITLE_COLORS[card_type]
-
+        for key in TITLE_COLORS:
+            if key in card_type:
+                fill = TITLE_COLORS[key]
+                break
+        else:
+            fill = "black"
 
         image_draw_obj_card_type_text.text((x_pos, Y_CARD_POS), card_type, font=FONT_CARD_TYPE, fill=fill)
         # Add card type text to final
@@ -218,7 +222,7 @@ def main():
                 current_card_outline = Image.alpha_composite(current_card_outline, image_cost)
 
             # Finally, save file
-            current_card_outline.save(fp=output_dir + card_type + card_title.replace(' ', '') + '.png')
+            current_card_outline.save(fp=(output_dir + card_type.replace(' ', '') + card_title.replace(' ', '') + '.png'))
 
 
 if __name__ == '__main__':
