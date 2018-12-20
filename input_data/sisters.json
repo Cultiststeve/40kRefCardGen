@@ -10,7 +10,8 @@
     "Sacred Rites": ["Start of movement phase: gain 1 Faith Point", "1 CP"],
     "Vessel of the Emperor's Will": ["After a successful Test of Faith roll for a Adepta Sororitas Character: Act of Faith affects all friendly Adepta Sororitas units within 6\".", "1 CP"],
     "Suffer not the Witch": ["Start of shooting or fight phase: Choose an Adepta Sororitas unit, re-rolls wounds for attacks targeting Psyker units.", "1 CP"],
-    "Extremis Trigger Word": ["When an Arco-Flagelllant unit fights: Each flail makes 3 hit rolls for each attack. After fight, each model dies on a D6.", "2 CP"]
+    "Extremis Trigger Word": ["When an Arco-Flagelllant unit fights: Each flail makes 3 hit rolls for each attack. After fight, each model dies on a D6.", "2 CP"],
+    "Final Redemption": ["Start of the fight phase: Pick a repentia squad. Each time a model is slain, on a 4+ the enemy unit suffers a mortal wound.", "1 CP"]
   },
   "Act of Faith": {
     "Hand of the Emperor": ["Start of the movement phase, add 3\" to selected unit's move.", "4 DV"],
@@ -19,5 +20,9 @@
     "Divine Guidance": ["Start of the shooting phase, +1 to hit rolls for selected unit.", "4 DV"],
     "The Passion": ["Start of the fight phase, selected unit can be chosen to fight twice", "5 DV"],
     "Light of the Emperor": ["Start of the moral phase, selected unit auto-passes", "3 DV"]
+  },
+    "Ability": {
+      "Smoke Launchers": "Once per game, use smoke launchers: -1 to hit on any rolls that target it.",
+      "Scared Banner of the Order Militant": "Start of any battle round: invulnerable save from shield of faith is improved by 1"
   }
 }

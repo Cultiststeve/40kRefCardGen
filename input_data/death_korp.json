@@ -25,9 +25,16 @@
     "Arial Spotter": ["At the start of the shooting phase: Select a Basilisk or Wyvern model, they can re-roll failed hit rolls for this unit in this phase.", "2 CP"],
     "Prepared Positions": ["Start of first battle round: All your units within your deployment zone other than titanic receive the benefit of cover.", "2 CP"]
   },
+  "Emperor's Wrath Stratagem": {
+    "Suppressive Fire": ["Start of your shooting phase: Selected vehicle cannot fire, selected enemy infantry unit within range, cannot fire overwatch and movement is halved.", "1 CP"],
+    "Pounding Barrage": ["Start of your shooting phase: Selected vehicle, selected ranged weapon can fire twice", "2 CP"]
+  },
   "Psychic": {
       "Smite": ["The closest visible enemy unit within 18\" of the psyker suffers D3 mortal wounds. If the result of the Psychic test was more than 10, the target suffers D6 mortal wounds instead.", "5 WC"],
       "Psychic Barrier": ["Select a friendly AM unit within 12\" of the psyker. Until the start of your next Psychic phase, add 1 to that unit's saving throws.", "6 WC"],
       "Nightshroud": ["Choose a friendly AM unit within 12\" of the psyker. Until the start of your next turn, any enemy unit that targets the chosen unit with a ranged weapon suffers a -1 penalty to its hit rolls.", "6 WC"]
+  },
+  "Ability": {
+    "Smoke Launchers": "Once per game, use smoke launchers: -1 to hit on any rolls that target it."
   }
 }

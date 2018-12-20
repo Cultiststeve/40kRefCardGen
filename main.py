@@ -19,11 +19,10 @@ FONTS_DICT = {"cardType": FONT_CARD_TYPE,
 Y_CARD_POS = 50
 Y_RULES_POS = 250
 Y_TITLE_POS = 130
-MARGINS = 40
-MAX_WIDTH_RULES = 32
-
 X_COST = 820
 Y_COST = Y_CARD_POS - 10
+MARGINS = 40
+MAX_WIDTH_RULES = 32
 
 # Colors
 COLOR_TRANSPARENT = (255, 255, 255, 0)
@@ -31,7 +30,8 @@ TITLE_COLORS = {
     "Stratagem": "purple",
     "Psychic": "darkBlue",
     "Order": "darkorange",
-    "Act of Faith": "gold"
+    "Act of Faith": "gold",
+    "Ability": "green"
 }
 
 # Values
@@ -116,6 +116,11 @@ def main():
 
         # Draw card type text
         x_pos = get_text_x_pos(background_img=image_background, text_type="cardType", string=card_type)
+        width = FONTS_DICT["cardType"].getsize(card_type)[0]
+        while x_pos + width > X_COST:  # Long names overlap cost, move left to fix this
+            print("moving title left, text too big")
+            x_pos = x_pos - 10
+
         for key in TITLE_COLORS:
             if key in card_type:
                 fill = TITLE_COLORS[key]
