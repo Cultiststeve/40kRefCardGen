@@ -26,18 +26,18 @@ MAX_WIDTH_RULES = 32
 
 # Colors
 COLOR_TRANSPARENT = (255, 255, 255, 0)
-TITLE_COLORS = {
-    "Stratagem": "purple",
-    "Psychic": "darkBlue",
-    "Order": "darkorange",
-    "Act of Faith": "gold",
-    "Ability": "green"
-}
+# TITLE_COLORS = {
+#     "Stratagem": "purple",
+#     "Psychic": "darkBlue",
+#     "Order": "darkorange",
+#     "Act of Faith": "gold",
+#     "Ability": "green"
+# }
 
 # Values
 BACKGROUND_TRANSPARENCY = 160
-BORDER_SIZE_VERTICAL = 30  # Larger = smaller proportion is border
-BORDER_SIZE_HORIZONTAL = 35
+BORDER_SIZE_VERTICAL = 25  # Larger = smaller proportion is border
+BORDER_SIZE_HORIZONTAL = 25
 
 
 def get_data(file_path):
@@ -107,7 +107,14 @@ def main():
     card_types = get_card_types(json_data)
 
     # For each card type to make
+    card_type_fill = "black"
     for card_type in card_types:
+        if "color" in json_data[card_type]:
+            card_type_fill = json_data[card_type]["color"]
+            print("Found color {} in json data for card type {}.".format(card_type_fill, card_type))
+        else:
+            raise AssertionError("Need to specify a color for each card type")
+
         print("\n\nCard type name : {}".format(card_type))
 
         # Make blank image for text, sets color of background inc transparance
@@ -121,14 +128,14 @@ def main():
             print("moving title left, text too big")
             x_pos = x_pos - 10
 
-        for key in TITLE_COLORS:
-            if key in card_type:
-                fill = TITLE_COLORS[key]
-                break
-        else:
-            fill = "black"
+        # for key in TITLE_COLORS:
+        #     if key in card_type:
+        #         fill = TITLE_COLORS[key]
+        #         break
+        # else:
+        #     fill = "black"
 
-        image_draw_obj_card_type_text.text((x_pos, Y_CARD_POS), card_type, font=FONT_CARD_TYPE, fill=fill)
+        image_draw_obj_card_type_text.text((x_pos, Y_CARD_POS), card_type, font=FONT_CARD_TYPE, fill=card_type_fill)
         # Add card type text to final
         card_outline = Image.alpha_composite(image_background, image_card_type_text)
 
@@ -140,7 +147,7 @@ def main():
             fill="black")
         image_draw_object_borders.rectangle(
             (
-            (image_background.size[0] * ((BORDER_SIZE_VERTICAL - 1) / BORDER_SIZE_VERTICAL), 0), image_background.size),
+            (image_background.size[0] * ((BORDER_SIZE_VERTICAL - 1) / BORDER_SIZE_VERTICAL) - 2, 0), image_background.size), # was a 1 pixel white line for some reason. just hiding it
             fill="black")
         image_draw_object_borders.rectangle(
             ((0, 0), (image_background.size[0], image_background.size[1] / BORDER_SIZE_HORIZONTAL)),
@@ -152,6 +159,8 @@ def main():
 
         # For each card of that type
         for card_title in json_data[card_type]:
+            if card_title == "color":
+                continue
             current_card_outline = card_outline.copy()
 
             print("Card title: {}".format(card_title))

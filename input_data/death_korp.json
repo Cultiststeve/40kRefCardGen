@@ -1,15 +1,23 @@
 {
   "faction": "death_korp",
   "Order": {
-      "Duty unto death!": "Any Infantry or Cavalry model in the unit that is killed in the Fight phase immediately makes a single attack.",
-      "Without Mercy": "All lasguns and all hot-shot lasguns in the ordered unit change their Type to Pistol 2 until the end of the turn.",
-      "Bring it Down!": "Re-roll wound rolls of 1 for all the models in the ordered unit until the end of the phase.",
-       "Forwards, for the Emperor!": "The ordered unit can shoot this phase even if it Advanced in its Movement phase",
-       "Get Back in the Fight!": "The ordered unit can shoot this phase, even if it Fell Back in its Movement phase",
-       "Move! Move! Move!": "Instead of shooting this phase, the ordered unit immediately moves as if it were the Movement phase. It must Advance as part of this move, and cannot declare a charge during this turn.",
-      "Fix Bayonets!": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."
+    "color": "darkorange",
+    "Duty unto death!": "Any Infantry or Cavalry model in the unit that is killed in the Fight phase immediately makes a single attack.",
+    "Without Mercy": "All lasguns and all hot-shot lasguns in the ordered unit change their Type to Pistol 2 until the end of the turn.",
+    "Bring it Down!": "Re-roll wound rolls of 1 for all the models in the ordered unit until the end of the phase.",
+    "Forwards, for the Emperor!": "The ordered unit can shoot this phase even if it Advanced in its Movement phase",
+    "Get Back in the Fight!": "The ordered unit can shoot this phase, even if it Fell Back in its Movement phase",
+    "Move! Move! Move!": "Instead of shooting this phase, the ordered unit immediately moves as if it were the Movement phase. It must Advance as part of this move, and cannot declare a charge during this turn.",
+    "Fix Bayonets!": "This order can only be issued to units that are within 1\" of an enemy unit. The ordered unit immediately fights as if it were the Fight phase."
+  },
+  "Tank Order": {
+    "color": "red",
+    "Full Throttle!": "Instead of shooting, ordered model immediately moves as if it was the movement phase.  It must advance, cannot charge this turn.",
+    "Gunners, Kill on Sight!": "Re-roll hit rolls of 1 for the ordered model until the end of the phase.",
+    "Strike and Shroud!": "Select a unit that has not yet used smoke launchers: Unit can shoot weapons and launch smoke launchers during this phase."
   },
   "Stratagem":{
+    "color": "purple",
     "Crush them!": ["Start of your Charge phase: Select an AM Vehicle unit from your army. This unit can charge even if it Advanced this turn. In the following Fight phase, attacks made by this unit hit on a 2+.", "1 CP"],
     "Jury Rigging": ["Start of your turn: Select an AM Vehicle from your army. It cannot move, charge or pile in this turn, but immediately heals 1 wound. Use once per turn", "1 CP"],
     "Preliminary Bombardment": ["Before first battle round: Roll a dice for each enemy unit on the battlefield. On a 6, that unit suffers 1 mortal wound. You can only use this Stratagem once per battle.", "2 CP"],
@@ -26,15 +34,23 @@
     "Prepared Positions": ["Start of first battle round: All your units within your deployment zone other than titanic receive the benefit of cover.", "2 CP"]
   },
   "Emperor's Wrath Stratagem": {
-    "Suppressive Fire": ["Start of your shooting phase: Selected vehicle cannot fire, selected enemy infantry unit within range, cannot fire overwatch and movement is halved.", "1 CP"],
-    "Pounding Barrage": ["Start of your shooting phase: Selected vehicle, selected ranged weapon can fire twice", "2 CP"]
+    "color": "Indigo",
+    "Suppressive Fire": ["Start of your shooting phase: Selected Emperor's Wrath vehicle cannot shoot, selected enemy infantry unit within range, cannot fire overwatch and movement is halved.", "1 CP"],
+    "Pounding Barrage": ["Start of your shooting phase: Selected Emperor's Wrath vehicle, selected ranged weapon can fire twice", "2 CP"]
+  },
+  "Emperor's Fist Stratagem": {
+    "color": "Indigo",
+    "Unyielding Advance": ["Start of your shooting phase: Emperor's Fist unit can shoot turret weapon twice, no matter how far it moved in preceding Movement phase.", "1 CP"],
+    "Steel Phalanx": ["Start of your charge phase: Pick an enemy unit, each time and Emperor's Fist unit ends charge move within 1\", on a D6 the unit suffers D3 mortal wounds.", "1 CP"]
   },
   "Psychic": {
-      "Smite": ["The closest visible enemy unit within 18\" of the psyker suffers D3 mortal wounds. If the result of the Psychic test was more than 10, the target suffers D6 mortal wounds instead.", "5 WC"],
-      "Psychic Barrier": ["Select a friendly AM unit within 12\" of the psyker. Until the start of your next Psychic phase, add 1 to that unit's saving throws.", "6 WC"],
-      "Nightshroud": ["Choose a friendly AM unit within 12\" of the psyker. Until the start of your next turn, any enemy unit that targets the chosen unit with a ranged weapon suffers a -1 penalty to its hit rolls.", "6 WC"]
+    "color": "darkBlue",
+    "Smite": ["The closest visible enemy unit within 18\" of the psyker suffers D3 mortal wounds. If the result of the Psychic test was more than 10, the target suffers D6 mortal wounds instead.", "5 WC"],
+    "Psychic Barrier": ["Select a friendly AM unit within 12\" of the psyker. Until the start of your next Psychic phase, add 1 to that unit's saving throws.", "6 WC"],
+    "Nightshroud": ["Choose a friendly AM unit within 12\" of the psyker. Until the start of your next turn, any enemy unit that targets the chosen unit with a ranged weapon suffers a -1 penalty to its hit rolls.", "6 WC"]
   },
   "Ability": {
-    "Smoke Launchers": "Once per game, use smoke launchers: -1 to hit on any rolls that target it."
+    "color": "green",
+    "Smoke Launchers": "Once per game, instead of shooting, use smoke launchers. Until next shooting phase, -1 to any hit rolls for ranged weapons targeting this unit."
   }
 }
