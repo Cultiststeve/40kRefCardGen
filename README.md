@@ -11,6 +11,10 @@ Example:
     python3 main.py input_data/death_korp.json input_data/death_korp_background.jpg
 ```
 
+# Example output:
+
+![Example Stratagem card](example_strat_card.png)
+
 # Other
 
 * Tested on windows only.
