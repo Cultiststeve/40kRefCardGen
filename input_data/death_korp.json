@@ -41,7 +41,7 @@
   "Emperor's Fist Stratagem": {
     "color": "Indigo",
     "Unyielding Advance": ["Start of your shooting phase: Emperor's Fist unit can shoot turret weapon twice, no matter how far it moved in preceding Movement phase.", "1 CP"],
-    "Steel Phalanx": ["Start of your charge phase: Pick an enemy unit, each time and Emperor's Fist unit ends charge move within 1\", on a D6 the unit suffers D3 mortal wounds.", "1 CP"]
+    "Steel Phalanx": ["Start of your charge phase: Pick an enemy unit, each time and Emperor's Fist unit ends charge move within 1\", on a 4+ the unit suffers D3 mortal wounds.", "1 CP"]
   },
   "Psychic": {
     "color": "darkBlue",

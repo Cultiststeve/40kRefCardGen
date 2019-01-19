@@ -9,6 +9,4 @@ venv1/
 
 *.pyc
 
-output.zip
-
-*_output.zip
+*.zip
